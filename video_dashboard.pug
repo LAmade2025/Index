@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1 Video Dashboard
+  
+  if session && session.user
+    h2 Welcome #{session.user.name}! 
+    
+    form(action="/video/new" method="post")
+      input(type="text", name="videoUrl", placeholder="Enter video URL", required)
+      input(type="text", name="videoTitle", placeholder="Enter video title", required)
+      button(type="submit") Add Video
+
+    button(type="button" onclick="window.location.href='/video/dashboard/all'") View All Videos
+    button(type="button" onclick="window.location.href='/video/dashboard/mine'") View My Videos
+  else
+    p You must log in to access this content.
